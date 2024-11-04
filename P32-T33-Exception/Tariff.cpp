@@ -3,16 +3,22 @@
 Tariff::Tariff()
 {
     name = "none";
-
 }
 
 Tariff::Tariff(std::string name)
 {
-    this->name = name;
+  //  if (name.empty()) throw new NameException("Name is empty", name);
+  //  if (name.find("XXX") != -1) throw new NameException("Invalid name", name);
+
+    //this->name = name;
+    setName(name);
 }
 
 void Tariff::setName(std::string name)
 {
+    if (name.empty()) throw new NameException("Name is empty", name);
+    if (name.find("XXX") != -1) throw new NameException("Invalid name", name);
+
     this->name = name;
 }
 

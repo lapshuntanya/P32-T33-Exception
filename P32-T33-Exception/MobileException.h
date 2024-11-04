@@ -21,6 +21,17 @@ public:
 	}
 };
 
+class PriceException : public MobileException {
+	float price;
+public:
+	PriceException(std::string text, float price) :MobileException(text) {
+		this->price = price;
+	}
+	string showMessage()const override {
+		return text + ". Price:" + std::to_string(price) + ".";
+	}
+};
+
 class NameException : public MobileException {
 	std::string name;
 public:
