@@ -14,7 +14,7 @@ SecondsTariff::SecondsTariff(std::string name, float price) :Tariff(name)
 
 void SecondsTariff::setPrice(float price)
 {
-    if (price <= 0) throw new PriceException("Price is a negative number!", price);
+    if (price <= 0) throw new PriceException(getName() + ". Price is a negative number!", price);
 
     this->price = price;
 }
@@ -23,7 +23,7 @@ float SecondsTariff::getPrice() const{   return price;}
 
 float SecondsTariff::calcCost(int seconds) const
 {
-    if (seconds <= 0) throw new SecondsException("Seconds <= 0", seconds);
+    if (seconds <= 0) throw new SecondsException(getName() + ". Seconds <= 0", seconds);
 
     return price * seconds;
 }

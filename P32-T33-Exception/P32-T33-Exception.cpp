@@ -51,7 +51,30 @@
 int main() {
 	Provider Kievstar("Kievstar");
 
-	Kievstar.addTariff(new SecondsTariff("", -500));
+	try { Kievstar.addTariff(new SecondsTariff("Day", 0.05)); }// OK
+	catch (MobileException* obj) {
+		cout << obj->showMessage() << endl; delete obj;
+	}
 
+	try{ Kievstar.addTariff(new SecondsTariff("", -500)); } //Exception
+	catch (MobileException* obj) {
+		cout << obj->showMessage() << endl; delete obj;
+	}
+
+	try { Kievstar.addTariff(new SecondsTariff("XXX day", 500)); }//Exception
+	catch (MobileException* obj) {
+		cout << obj->showMessage() << endl; delete obj;
+	}
+
+	try { Kievstar.addTariff(new MinutesTariff("night", -500)); }//Exception
+	catch (MobileException* obj) {
+		cout << obj->showMessage() << endl; delete obj;
+	}
+
+	try { Kievstar.addTariff(new MinutesTariff("night", 0.5)); }//OK
+	catch (MobileException* obj) {
+		cout << obj->showMessage() << endl; delete obj;
+	}
+	cout << "-------------------------------------\n\n";
 	Kievstar.showList();
 }
